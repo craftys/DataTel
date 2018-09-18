@@ -1,0 +1,2 @@
+# DataTel
+Editovatelný telefoní seznam
