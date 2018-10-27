@@ -5,10 +5,14 @@ popis: Databáze jmen a telefonních čísel
 autor: Miroslav Janota
 """
 
+#import knihoven
+
+
+
 #Deklarace globálních proměnných
 database={}
-obsah=["1-Vypiš kompletní list", "2-Vyhledej záznam", "3-Smaž záznam", "4-Přidej záznam","5-Odvšivení","6-Ukončit"," "]
-ladeni=["1-Vypiš řádek","2-Vypiš proměnnou database","3-Zpět do hlavního menu"," "] 
+obsah=["------------------------------------", " 1-Vypiš kompletní list", " 2-Vyhledej záznam", " 3-Smaž záznam", " 4-Smaž celý seznam", " 5-Přidej záznam"," 6-Odvšivení"," 7-Ukončit","------------------------------------", " "]
+ladeni=["------------------------------------", " 1-Vypiš řádek"," 2-Vypiš proměnnou database"," 3-Informace o databázi"," 5-Zpět do hlavního menu", "------------------------------------"," "] 
 pocetrad=0
 
 #Otevře soubor a spočítá řádky - vrací počet řádků
@@ -26,29 +30,43 @@ def inicializace():
 #Hlavní menu
 def vyber_fci():
 	print("")
+	
+	#Vypíše seznam položek menu
 	for a in obsah:
 		print(a)
 	
-	print("")	
-	vyber=int(input("Zadej svůj výběr: "))
-	print("")
-	
-	if vyber==1:
+	#Zabránění uživateli v zadání jiného znaku než čísla
+	while True:
+		print("")
+		vstup=input("Zadej svůj výběr: ")
+		if str.isdigit(vstup):
+			vyber=int(vstup)
+			break
+		else:
+			print("")
+			print("Nebyla zadaná číselná hodnota!")
+			
+
+	#Řízení toku programu podle volby menu
+	if vyber==1:	#Vypíše celý seznam
 		vypis()
 			
-	elif vyber==2:
+	elif vyber==2:	#Vyhledá položku v seznamu
 		hledej()
 		
-	elif vyber==3:
+	elif vyber==3:	#Smaže položku v seznamu
 		smazat()
 		
-	elif vyber==4:
+	elif vyber==4:	#Smaže kompletně celý seznam
+		smazatvse()
+			
+	elif vyber==5:	#Vloží novou položku do seznamu
 		novy()
-	
-	elif vyber==5:
+			
+	elif vyber==6:	#Debug
 		odvsiveni()
 		
-	elif vyber==6:
+	elif vyber==7:	#Ukončí program
 		exit()	
 		
 	else:
@@ -110,23 +128,75 @@ def novy():
 	
 #Smaže vybraný řádek	
 def smazat():
-	zaznam=input("Který řádek si přejete smazat? ")
+	#Zabránění uživateli v zadání jiného znaku než čísla
+	while True:
+		print("")
+		print("Který řádek si přejete smazat?")
+		vstup=input("Zadej svůj výběr: ")
+		if str.isdigit(vstup):
+			vyber=int(vstup)
+			if (vyber>len(database)-1):
+				break
+			else:
+				pass
+					
+		else:
+			print("")
+			print("Nebyla zadaná číselná hodnota!")
 	
-	pass
+	del database[vyber]
 
-#Vyhledá řetězec v souboru	
+
+#Smaže celý seznam
+def smazatvse():
+	#with open('pokus.txt', 'wt', encoding="utf-8") as soubor:
+	pass	
+
+
+#Zapíše slovník database do souboru
+def zapis():
+	nacti()   
+	with open('pokus.txt', "wt", encoding="utf-8") as soubor:
+		for klic in database:
+			soubor.write(database[klic][0]+" ")
+			soubor.write(database[klic][1]+" ")
+			soubor.write(database[klic][2]+" ")
+			soubor.write(database[klic][3]+"\n")				
+			soubor.close()
+
+
+#Vyhledá řetězec v souboru	a vypíše řádek, ve kterém se vyskytuje
 def hledej():
-	pass
+	nacti()
+	print()
+	hledany=input("Zadej hledané jméno nebo číslo: ")
+	print()
+	for klic in range(len(database)):
+		for polozka in database[klic]:
+			if hledany == polozka:
+				print(database[klic])
+	vyber_fci()
+				
+				
 
 #Vypíše různé ladící proměnné
 def odvsiveni():
 	print("")
 	for a in ladeni:
 		print(a)
-	print("")
+
+	#Zabránění uživateli v zadání jiného znaku než čísla
+	while True:
+		print("")
+		vstup=input("Zadej svůj výběr: ")
+		if str.isdigit(vstup):
+			vyber=int(vstup)
+			break
+		else:
+			print("")
+			print("Nebyla zadaná číselná hodnota!")
 	
-	vyber=int(input("Zadej svůj výběr: "))
-	print("")
+	print("")		
 	
 	if vyber==1:
 		nacti()
@@ -139,12 +209,19 @@ def odvsiveni():
 		nacti()
 		print(database)
 		odvsiveni()
-		
+	
 	elif vyber==3:
+		print("Počet řádků databáze je: " + str(pocet_radku()))
+		print()
+		odvsiveni()
+		
+	elif vyber==5:
 		vyber_fci()
 		
 	else:
+		print("")
 		print("Není v seznamu!")
+		print("")
 		anone=input("Přejete si opakovat výběr? [a/n] :")
 		print("")
 		
