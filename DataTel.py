@@ -29,7 +29,7 @@ def je_soubor():
 			if pocet_radku()==0:
 				print("Soubor je prázdný")
 			else:
-				print("V souboru je" + str(pocet_radku()) + " záznamů")	
+				print("V souboru je " + str(pocet_radku()) + " záznamů")	
 			
 
 #Otevře soubor a spočítá řádky - vrací počet řádků
