@@ -15,6 +15,9 @@ obsah=["------------------------------------", " 1-Vypiš kompletní list", " 2-
 ladeni=["------------------------------------", " 1-Vypiš řádek"," 2-Vypiš proměnnou database"," 3-Informace o databázi"," 5-Zpět do hlavního menu", "------------------------------------"," "] 
 pocetrad=0
 
+#Ošetření vyjimky - pro případ, že soubor neexistuje
+
+
 #Otevře soubor a spočítá řádky - vrací počet řádků
 def pocet_radku():
 	poc=0
@@ -82,8 +85,7 @@ def vyber_fci():
 #Vypíše seznam na obrazovku
 def vypis():
 	print("")
-	pocetrad=pocet_radku()
-	print("Počet záznamů v souboru: ",pocetrad)
+	print("Počet záznamů v souboru: " + str(pocet_radku()))
 	print("")
 	with open('pokus.txt', 'rt', encoding='utf-8') as soubor:
 		radka=""
