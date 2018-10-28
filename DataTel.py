@@ -6,7 +6,7 @@ autor: Miroslav Janota
 """
 
 #import knihoven
-
+import os
 
 
 #Deklarace globálních proměnných
@@ -16,7 +16,21 @@ ladeni=["------------------------------------", " 1-Vypiš řádek"," 2-Vypiš p
 pocetrad=0
 
 #Ošetření vyjimky - pro případ, že soubor neexistuje
-
+def je_soubor():
+	print()
+	if (not os.path.isfile('pokus.txt')):
+		print("Soubor s databází neexistuje!")
+		print("Bude vytvořen nový soubor s názvem pokus.txt")
+		with open('pokus.txt','wt', encoding='utf-8') as soubor:
+			pass
+					
+	else:
+		with open('pokus.txt','rt', encoding='utf-8') as soubor:
+			if pocet_radku()==0:
+				print("Soubor je prázdný")
+			else:
+				print("V souboru je" + str(pocet_radku()) + " záznamů")	
+			
 
 #Otevře soubor a spočítá řádky - vrací počet řádků
 def pocet_radku():
@@ -28,11 +42,12 @@ def pocet_radku():
 
 #Načtení řádků souboru do slovníku Database
 def inicializace():
-	pass
+	je_soubor()
+	vyber_fci()
 
 #Hlavní menu
 def vyber_fci():
-	print("")
+	print()
 	
 	#Vypíše seznam položek menu
 	for a in obsah:
@@ -244,5 +259,5 @@ def nacti():
 
 #Hlavní část programu
 if __name__ == "__main__":
-	vyber_fci()
+	inicializace()
 	
