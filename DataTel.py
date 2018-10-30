@@ -149,19 +149,21 @@ def smazat():
 	while True:
 		print("")
 		print("Který řádek si přejete smazat?")
+		print()
 		vstup=input("Zadej svůj výběr: ")
 		if str.isdigit(vstup):
 			vyber=int(vstup)
 			if (vyber>len(database)-1):
 				break
 			else:
-				pass
-					
+				del database[str(vyber)]
+				zapis()
+				vyber_fci()	
 		else:
 			print("")
 			print("Nebyla zadaná číselná hodnota!")
 	
-	del database[vyber]
+	#del database[vyber]
 
 
 #Smaže celý seznam
@@ -172,7 +174,7 @@ def smazatvse():
 
 #Zapíše slovník database do souboru
 def zapis():
-	nacti()   
+	#nacti()   
 	with open('pokus.txt', "wt", encoding="utf-8") as soubor:
 		for klic in database:
 			soubor.write(database[klic][0]+" ")
