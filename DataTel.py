@@ -21,9 +21,10 @@ def je_soubor():
 	if (not os.path.isfile('pokus.txt')):
 		print("Soubor s databází neexistuje!")
 		print("Bude vytvořen nový soubor s názvem pokus.txt")
+		#Vytvoření prázdného souboru pokus.txt
 		with open('pokus.txt','wt', encoding='utf-8') as soubor:
-			pass
-					
+			soubor.close()
+							
 	else:
 		with open('pokus.txt','rt', encoding='utf-8') as soubor:
 			if pocet_radku()==0:
