@@ -147,6 +147,7 @@ def novy():
 #Smaže vybraný řádek	
 def smazat():
 	#Zabránění uživateli v zadání jiného znaku než čísla
+	nacti()
 	while True:
 		print("")
 		print("Který řádek si přejete smazat?")
@@ -154,18 +155,32 @@ def smazat():
 		vstup=input("Zadej svůj výběr: ")
 		if str.isdigit(vstup):
 			vyber=int(vstup)
-			if (vyber>len(database)-1):
+			#DEBUG 1
+			print("Výběr ",type(vyber)," ",vyber)
+			print("Vstup",type(vstup)," ",vstup)
+			print(len(database))
+			#DEBUG 1
+			if (vyber<len(database)-1):
+				print("Prošlo !!!")
+				print()
 				break
+			
 			else:
-				del database[str(vyber)]
+				print("Database má méně položek")
 				zapis()
-				vyber_fci()	
+				vyber_fci()
+			
+					
 		else:
 			print("")
 			print("Nebyla zadaná číselná hodnota!")
 	
 	#del database[vyber]
-
+	del database[vyber]
+	print(database)
+	print()
+	#zapis()
+	vyber_fci()	
 
 #Smaže celý seznam
 def smazatvse():
