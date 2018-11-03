@@ -119,13 +119,14 @@ def novy():
 			jme=input("Zadej jméno: ")	
 			pri=input("Zadej příjmení: ")
 			cis=input("Zadej telefonní číslo: ")
-			database[pocetrad]=[str(pocetrad-1),jme,pri,cis]
+			#database[pocetrad]=[str(pocetrad-1),jme,pri,cis]
+			database[pocetrad]=[jme,pri,cis]
 			
 			#Zápis do souboru - na konec
 			soubor.write(database[pocetrad][0]+" ")
 			soubor.write(database[pocetrad][1]+" ")
-			soubor.write(database[pocetrad][2]+" ")
-			soubor.write(database[pocetrad][3]+"\n")				
+			soubor.write(database[pocetrad][2]+"\n")
+			#soubor.write(database[pocetrad][3]+"\n")				
 			soubor.close()
 			
 			while True:
@@ -195,8 +196,8 @@ def zapis():
 		for klic in database:
 			soubor.write(database[klic][0]+" ")
 			soubor.write(database[klic][1]+" ")
-			soubor.write(database[klic][2]+" ")
-			soubor.write(database[klic][3]+"\n")				
+			soubor.write(database[klic][2]+"\n")
+			#soubor.write(database[klic][3]+"\n")				
 			#soubor.close()
 
 
