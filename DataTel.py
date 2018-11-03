@@ -105,9 +105,9 @@ def vypis():
 	print("")
 	with open('pokus.txt', 'rt', encoding='utf-8') as soubor:
 		radka=""
-		poradi=O
+		poradi=0
 		for radka in soubor:
-			print(poradi," ",radka.rstrip())
+			print(poradi,radka.rstrip())
 			poradi+=1
 								
 	vyber_fci()	
@@ -188,7 +188,9 @@ def smazat():
 #Smaže celý seznam
 def smazatvse():
 	#with open('pokus.txt', 'wt', encoding="utf-8") as soubor:
-	pass	
+	os.remove('pokus.txt')
+	database.clear()
+	vyber_fci()
 
 
 #Zapíše slovník database do souboru
