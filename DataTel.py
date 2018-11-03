@@ -121,14 +121,12 @@ def novy():
 			jme=input("Zadej jméno: ")	
 			pri=input("Zadej příjmení: ")
 			cis=input("Zadej telefonní číslo: ")
-			#database[pocetrad]=[str(pocetrad-1),jme,pri,cis]
 			database[pocetrad]=[jme,pri,cis]
 			
 			#Zápis do souboru - na konec
 			soubor.write(database[pocetrad][0]+" ")
 			soubor.write(database[pocetrad][1]+" ")
-			soubor.write(database[pocetrad][2]+"\n")
-			#soubor.write(database[pocetrad][3]+"\n")				
+			soubor.write(database[pocetrad][2]+"\n")				
 			soubor.close()
 			
 			while True:
@@ -178,7 +176,6 @@ def smazat():
 			print("")
 			print("Nebyla zadaná číselná hodnota!")
 	
-	#del database[vyber]
 	del database[vyber]
 	print(database)
 	print()
@@ -187,7 +184,6 @@ def smazat():
 
 #Smaže celý seznam
 def smazatvse():
-	#with open('pokus.txt', 'wt', encoding="utf-8") as soubor:
 	os.remove('pokus.txt')
 	database.clear()
 	vyber_fci()
@@ -195,15 +191,11 @@ def smazatvse():
 
 #Zapíše slovník database do souboru
 def zapis():
-	#nacti()   
 	with open('pokus.txt', "wt", encoding="utf-8") as soubor:
 		for klic in database:
 			soubor.write(database[klic][0]+" ")
 			soubor.write(database[klic][1]+" ")
 			soubor.write(database[klic][2]+"\n")
-			#soubor.write(database[klic][3]+"\n")				
-			#soubor.close()
-
 
 #Vyhledá řetězec v souboru	a vypíše řádek, ve kterém se vyskytuje
 def hledej():
