@@ -105,8 +105,10 @@ def vypis():
 	print("")
 	with open('pokus.txt', 'rt', encoding='utf-8') as soubor:
 		radka=""
+		poradi=O
 		for radka in soubor:
-			print(radka.rstrip())
+			print(poradi," ",radka.rstrip())
+			poradi+=1
 								
 	vyber_fci()	
 
