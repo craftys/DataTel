@@ -179,7 +179,7 @@ def smazat():
 	del database[vyber]
 	print(database)
 	print()
-	#zapis()
+	zapis()
 	vyber_fci()	
 
 #Smaže celý seznam
@@ -197,7 +197,7 @@ def zapis():
 			soubor.write(database[klic][1]+" ")
 			soubor.write(database[klic][2]+" ")
 			soubor.write(database[klic][3]+"\n")				
-			soubor.close()
+			#soubor.close()
 
 
 #Vyhledá řetězec v souboru	a vypíše řádek, ve kterém se vyskytuje
